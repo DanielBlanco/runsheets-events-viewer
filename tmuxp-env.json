@@ -1,0 +1,19 @@
+{
+  "session_name": "!",
+  "start_directory": "~/Development/Projects/my-events-viewer/",
+  "windows": [
+    {
+      "panes": [
+        {
+          "shell_command": ["elm-app start"]
+        },
+        {
+          "shell_command": ["vim ."],
+          "focus": true
+        }
+      ],
+      "layout": "main-vertical",
+      "window_name": "viewer"
+    }
+  ]
+}
