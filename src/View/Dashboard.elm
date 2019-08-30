@@ -179,7 +179,7 @@ companyData maybeId =
         , h3 [ class "font-bold text-3xl text-gray-600" ]
             [ case maybeId of
                 Nothing ->
-                    text ""
+                    text "?"
 
                 Just id ->
                     String.fromInt id |> text
