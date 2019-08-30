@@ -28,6 +28,7 @@ initModel =
 
 
 ---- UPDATE ----
+--- If want to debug Debug.log ("Oops! " ++ model.error ++ D.errorToString err)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -47,7 +48,7 @@ update msg model =
                 newModel =
                     { model | error = "Cannot get events from your JSON!" }
             in
-            Debug.log ("Oops! " ++ model.error ++ D.errorToString err) ( newModel, Cmd.none )
+            ( newModel, Cmd.none )
 
         ShowEditor ->
             ( { model | events = [], error = "", mode = Editor }, Cmd.none )
