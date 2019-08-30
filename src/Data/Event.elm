@@ -22,7 +22,6 @@ type alias Event =
     { message : String
     , tags : List String
     , details : Maybe EventDetail
-    , createdAt : Int
     }
 
 
@@ -112,4 +111,3 @@ decoder =
         |> required "message" D.string
         |> required "tags" (D.list D.string)
         |> required "details" (D.nullable Data.EventDetail.decoder)
-        |> required "createdAt" D.int

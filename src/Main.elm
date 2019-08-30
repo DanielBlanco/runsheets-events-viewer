@@ -7,6 +7,7 @@ import Html exposing (..)
 import Html.Attributes exposing (class, href, src)
 import Html.Events exposing (onClick)
 import Json.Decode as D exposing (Decoder)
+import Regex
 import View.Dashboard exposing (view)
 import View.Footer exposing (view)
 import View.Header exposing (view)
@@ -48,13 +49,23 @@ update msg model =
                 newModel =
                     { model | error = "Cannot get events from your JSON!" }
             in
-            ( newModel, Cmd.none )
+            Debug.log ("Oops! " ++ model.error ++ D.errorToString err) ( newModel, Cmd.none )
 
         ShowEditor ->
             ( { model | events = [], error = "", mode = Editor }, Cmd.none )
 
         EditJson json ->
-            ( { model | json = json, error = "" }, Cmd.none )
+            ( { model | json = json |> removeNumberLong, error = "" }, Cmd.none )
+
+
+removeNumberLong : String -> String
+removeNumberLong json =
+    let
+        regex =
+            Regex.fromString "NumberLong(\\([0-9]+\\))"
+                |> Maybe.withDefault Regex.never
+    in
+    Regex.replace regex (\_ -> "0") json
 
 
 
